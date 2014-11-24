@@ -1,0 +1,23 @@
+{
+  "name": "RecuitManager",
+  "description": "Recuitment Manager",
+  "version": "0.0.1",
+  "dependencies": {
+    "crypto":"*",
+    "grunt": "*",
+    "grunt-contrib-uglify":"*",
+    "grunt-contrib-handlebars":"*",
+    "grunt-contrib-concat":"*",
+    "grunt-contrib-jshint":"*",
+    "grunt-contrib-watch":"*",
+    "bootstrap":"*",
+    "jquery": "*",
+    "wolfy87-eventemitter":"*",
+    "express":"*",
+    "body-parser" : "*",
+    "express-session":"*",
+    "multer":"*",
+    "handlebars":"*",
+    "mongoose":"*"
+  }
+}
