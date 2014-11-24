@@ -5,7 +5,7 @@
   "dependencies": {
     "crypto":"*",
     "grunt": "*",
-    "grunt-contrib-uglify":"*",
+    "grunt-contrib-uglify":"*",""
     "grunt-contrib-handlebars":"*",
     "grunt-contrib-concat":"*",
     "grunt-contrib-jshint":"*",

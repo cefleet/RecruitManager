@@ -1,0 +1,57 @@
+<div class='form-horizontal' role='form' id='createRecuitForm'>
+  <div class='form-group'>
+    {{#each form.first_name}}
+    {{> input}}
+    {{/each}}
+  </div>
+  <div class='form-group'>
+    {{#each form.last_name}}
+    {{> input}}
+    {{/each}}
+  </div>
+  <div class='form-group'>
+    {{#each form.email}}
+    {{> input}}
+    {{/each}}
+  </div>
+  <div class='form-group'>
+    {{#each form.phone_1}}
+    {{> input}}
+    {{/each}}
+  </div>
+  <div class='form-group'>
+    {{#each form.phone_2}}
+    {{> input}}
+    {{/each}}
+  </div>
+  <div class='form-group'>
+    {{#each form.address_street}}
+    {{> input}}
+    {{/each}}
+  </div>
+  <div class='form-group'>
+    {{#each form.address_city}}
+    {{> input}}
+    {{/each}}
+  </div>
+  <div class='form-group'>
+    {{#each form.address_state}}
+    {{> input}}
+    {{/each}}
+  </div>
+  <div class='form-group'>
+    {{#each form.address_zip}}
+    {{> input}}
+    {{/each}}
+  </div>
+  <div class='form-group'>
+    {{#each form.years_exp}}
+    {{> select}}
+    {{/each}}
+  </div>
+  <div class='form-group'>
+    {{#each form.job_type}}
+    {{> select}}
+    {{/each}}
+  </div>
+</div>
