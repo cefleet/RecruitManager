@@ -1,6 +1,16 @@
-RM.Actions.new_recuit_form = function(data){
-  console.log(data);
-  var formData = {form :
+RM.Launcher.newRecuit = function(into){
+  var formData = {
+    button : [{
+        option: 'primary',
+        text : 'Add Recuit',
+        attribs : [
+          {
+            key : 'l-action',
+            value : 'addRecuit'
+          }
+        ]
+      }],
+    form :
     {
       first_name : [{
         title : 'First Name',
@@ -75,6 +85,7 @@ RM.Actions.new_recuit_form = function(data){
         name : 'address_zip'
       }],
       years_exp : [{
+        type : 'select',
         title : 'Years Experience',
         id : 'years_exp_input',
         cols : '6',
@@ -113,6 +124,7 @@ RM.Actions.new_recuit_form = function(data){
         ]
       }],
       job_type : [{
+        type : 'select',
         title : 'Job Type',
         id : 'job_type_input',
         cols : '6',
@@ -136,8 +148,6 @@ RM.Actions.new_recuit_form = function(data){
       }]
     }
     };
-    console.log(formData);
     var html = RM.Views.new_recuit_form(formData);
-    $(document.body).append(html);
-    console.log(html);
+    $('#'+into).append(html);
   };

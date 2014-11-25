@@ -31,7 +31,8 @@ module.exports = function(grunt) {
       },
       dev : {
         files : {
-          'dev/public/actions.js': ['dev/public/actions/**/*.js']
+          'dev/public/actions.js': ['dev/public/action.js','dev/public/actions/**/*.js'],
+          'dev/public/launchers.js': ['dev/public/launcher.js','dev/public/launchers/**/*.js']
         }
       }
     },
@@ -42,7 +43,7 @@ module.exports = function(grunt) {
         tasks : ['handlebars']
       },
       testAndCombine : {
-        files : ['dev/public/actions/**/*.js'],
+        files : ['dev/public/actions/**/*.js','dev/public/launchers/**/*.js'],
         tasks: ['concat','jshint']
       }
     }
