@@ -51,13 +51,14 @@ app.post('/save_recuit', function(req,res){
   person.save(function (err, person) {
     if (err) return console.error(err);
   });
-
-  Recuit.find(function (err, people) {
-    if (err) return console.error(err);
-    console.log(people)
-  })
 });
 
+app.post('/list_recuits', function(req,res){
+  Recuit.find(function (err, people) {
+    if (err) return console.error(err);
+    console.log(people);
+  })
+});
 
 
 app.use('/',express.static(__dirname+'/dev/public'));
