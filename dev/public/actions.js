@@ -1,5 +1,4 @@
 RM.Actions = {};
-console.log(RM.Actions);
 
 RM.Actions.addRecuit = function(){
   var data = {};
@@ -33,7 +32,7 @@ RM.Actions._mainMenu = function(){
   $('.navLink').on('click', function(){
     var action = $(this).attr('l-action');
 
-    //we are going to fill up content from the navbar
+    //we are going to fill up content from the navbar link clicks
     $('#content').empty();
     RM.Actions[action]('content');
 
@@ -53,5 +52,6 @@ RM.Actions._newRecuit = function(){
     RM.Actions[action]();
   })
 };
+
 
 //# sourceMappingURL=actions.js.map

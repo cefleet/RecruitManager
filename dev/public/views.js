@@ -116,6 +116,12 @@ this["RM"]["Views"]["content"] = Handlebars.template({"compiler":[6,">= 2.0.0-be
 
 
 
+this["RM"]["Views"]["list_recuits"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "";
+},"useData":true});
+
+
+
 this["RM"]["Views"]["main_menu"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<nav class=\"navbar navbar-default\" role=\"navigation\">\n  <ul class='nav navbar-nav'>\n    <li role='presentation' class='active navLink' l-action='listRecuits'><a>List Recuits</a></li>\n    <li role='presentation' class='navLink' l-action='newRecuit'><a>Add Recuit</a></li>\n  </ul>\n</nav>\n";
   },"useData":true});
