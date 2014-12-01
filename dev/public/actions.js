@@ -6,9 +6,25 @@ RM.Actions.addRecuit = function(){
     data[$(this).attr('name')] = $(this).val();
   });
 
-  console.log(data);
+  var callback = function(data){
+    if(typeof data === 'string'){
+      data = JSON.parse(data);
+    }
+    console.log(data);
 
-  $.post('save_recuit',data);
+    //todo goto list
+  };
+
+  $.ajax({
+    type:'POST',
+    url : RM.restAPI+'/recuit/create',
+    data:data,
+    dataType: 'jsonp',
+    contentType: 'application/json',
+    success : function(data){
+      callback(data);
+    }
+  });
 };
 //collect information
 
@@ -20,8 +36,14 @@ RM.Actions.content = function(into){
   RM.Launcher.launch(into,callback,'content');
 };
 
-RM.Actions.listRecuits = function(){
-  console.log('List Recuits');
+RM.Actions.listRecuits = function(into){
+
+  RM.Launcher.launch(into,this._listRecuit,'listRecuit');
+
+};
+
+RM.Actions._listRecuits = function(){
+
 };
 
 RM.Actions.mainMenu = function(into){
@@ -50,7 +72,7 @@ RM.Actions._newRecuit = function(){
     var action = $(this).attr('l-action');
 
     RM.Actions[action]();
-  })
+  });
 };
 
 

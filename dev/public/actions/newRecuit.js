@@ -6,5 +6,5 @@ RM.Actions._newRecuit = function(){
     var action = $(this).attr('l-action');
 
     RM.Actions[action]();
-  })
+  });
 };
