@@ -64,16 +64,25 @@ Handlebars.registerPartial("input", Handlebars.template({"compiler":[6,">= 2.0.0
     + "'></input>\n  </div>\n</div> \n";
 },"useData":true}));
 
-Handlebars.registerPartial("list_recuit", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+Handlebars.registerPartial("list_recuit", Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "<tr id='"
-    + escapeExpression(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"id","hash":{},"data":data}) : helper)))
-    + "'>\n  <td>"
+  return escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)));
+  },"3":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return " "
     + escapeExpression(((helper = (helper = helpers.first_name || (depth0 != null ? depth0.first_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"first_name","hash":{},"data":data}) : helper)))
+    + " "
+    + escapeExpression(((helper = (helper = helpers.last_name || (depth0 != null ? depth0.last_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"last_name","hash":{},"data":data}) : helper)));
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<tr id='"
+    + escapeExpression(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"id","hash":{},"data":data}) : helper)))
+    + "'>\n  <td>";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.name : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "</td>\n  <td>"
+    + escapeExpression(((helper = (helper = helpers.phone || (depth0 != null ? depth0.phone : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"phone","hash":{},"data":data}) : helper)))
     + "</td>\n  <td>"
-    + escapeExpression(((helper = (helper = helpers.last_name || (depth0 != null ? depth0.last_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"last_name","hash":{},"data":data}) : helper)))
-    + "</td>\n  <td>"
-    + escapeExpression(((helper = (helper = helpers.years_exp || (depth0 != null ? depth0.years_exp : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"years_exp","hash":{},"data":data}) : helper)))
+    + escapeExpression(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"email","hash":{},"data":data}) : helper)))
     + "</td>\n</tr>\n";
 },"useData":true}));
 
@@ -85,7 +94,7 @@ Handlebars.registerPartial("pagination", Handlebars.template({"1":function(depth
   var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "  <li ";
   stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.active : depth0), {"name":"if","hash":{},"fn":this.program(6, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "><a ui-action='"
+  return buffer + "><a ui-data='"
     + escapeExpression(((helper = (helper = helpers.page || (depth0 != null ? depth0.page : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"page","hash":{},"data":data}) : helper)))
     + "'>"
     + escapeExpression(((helper = (helper = helpers.page || (depth0 != null ? depth0.page : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"page","hash":{},"data":data}) : helper)))
@@ -96,14 +105,14 @@ Handlebars.registerPartial("pagination", Handlebars.template({"1":function(depth
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "";
   stack1 = helpers['if'].call(depth0, ((stack1 = ((stack1 = (depth0 != null ? depth0.pagination : depth0)) != null ? stack1.previous : stack1)) != null ? stack1.disabled : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
-  buffer += "\n  <a ui-action='"
+  buffer += "\n  <a ui-data='"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.pagination : depth0)) != null ? stack1.prevPage : stack1), depth0))
     + "'><span aria-hidden=\"true\">&laquo;</span><span class=\"sr-only\">Previous</span></a>\n</li>\n";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 != null ? depth0.pagination : depth0)) != null ? stack1.pages : stack1), {"name":"each","hash":{},"fn":this.program(5, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   stack1 = helpers['if'].call(depth0, ((stack1 = ((stack1 = (depth0 != null ? depth0.pagination : depth0)) != null ? stack1.next : stack1)) != null ? stack1.disabled : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "\n  <a ui-action='"
+  return buffer + "\n  <a ui-data='"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.pagination : depth0)) != null ? stack1.nextPage : stack1), depth0))
     + "'><span aria-hidden=\"true\">&raquo;</span><span class=\"sr-only\">Next</span></a>\n</li>\n";
 },"useData":true}));
@@ -166,7 +175,7 @@ this["RM"]["Views"]["list_recuits"] = Handlebars.template({"1":function(depth0,h
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<table class='table table-striped'>\n  <thead><tr><th>First Name</th><th>Last Name</th><th>Years Expereince</th></tr></thead>\n  <tbody>\n";
+  var stack1, buffer = "<table class='table table-striped recuits'>\n  <thead><tr><th>Name</th><th>Phone</th><th>Email</th></tr></thead>\n  <tbody>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.recuit : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   buffer += "</tbody>\n</table>\n<nav>\n  <ul class=\"pagination\">\n";

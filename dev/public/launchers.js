@@ -1,6 +1,6 @@
 RM.Launcher = {
-  launch : function(into,callback,launcher){
-    this[launcher](into);//probably need data as well
+  launch : function(into,callback,launcher,data){
+    this[launcher](into,data);//probably need data as well
     if(typeof callback === 'function'){
       callback();
     }
@@ -12,49 +12,81 @@ RM.Launcher.content = function(into){
   $('#'+into).append(html);
 };
 
-RM.Launcher.listRecuit = function(into){
-  var page = 1;
-  var limit = 10;
+RM.Launcher.listRecuit = function(into,options){
+  console.log(options);
+  var count,reqOptions,tp,pages;
+  options = options || {};
+  var page = options.page || 1;
+  var limit = options.limit || 3;
+
   var callback = function(data){
-    //TODO some logic for pagination
-    recuits = {
-      recuit : data,
-      pagination : {
-        prevPage : 0,
-        nextPage : 2,
-        pages : [{page:1, active : true},{page:2},{page:3},{page:4},{page:5}],
-        previous : {
-          disabled : true
-        },
-        next : {
-          disabled : false
+    pages = [];
+
+    tp = Math.ceil(data.count/limit);
+
+    //This is if there is up to 5
+    if(tp <= 5){
+      var i = 1;
+      while(i <= tp){
+        var o = {
+          active : false,
+          page : i
+        };
+        if(i == page){
+          o.active = true;
         }
+        pages.push(o);
+        i++;
+      }
+    }
+
+    //disable previous or not
+    var previous = {disabled : false};
+    if((page-1) <= 0){
+      previous  = { disabled : true };
+    }
+
+    //disable next or not
+    var next = {disabled : false};
+    if((page+1) >= tp){
+      next  = { disabled : true };
+    }
+
+    recuits = {
+      recuit : data.recuits,
+      pagination : {
+        total : data.count,
+        prevPage : page-1,
+        nextPage : page+1,
+        pages : pages,
+        previous : previous,
+        next : next
       }
     };
     var html = RM.Views.list_recuits(recuits);
     $('#'+into).append(html);
   };
 
-  var data = {
-    limit : limit,
-    skip : page*limit
-  };
 
-  $.ajax({
-    type:'GET',
-    url : RM.restAPI+'/recuit/find',
-    data:data,
-    dataType: 'json',
-    contentType: 'application/json',
-    success : function(data){
-      callback(data);
-    }
+  $.get(RM.restAPI+'/recuit/count', function(count){
+
+    count = JSON.parse(count).count;
+    reqOptions = {
+      limit : limit,
+      skip : (page-1)*limit
+    };
+
+    $.ajax({
+      type:'GET',
+      url : RM.restAPI+'/recuit/find',
+      data:reqOptions,
+      dataType: 'json',
+      contentType: 'application/json',
+      success : function(data){
+        callback({recuits : data,count : count});
+      }
+    });
   });
-
-};
-
-RM.Launcher._listRecuit = function(){
-
 };
 
 RM.Launcher.mainMenu = function(into){
@@ -216,5 +248,19 @@ RM.Launcher.newRecuit = function(into){
     $('#'+into).append(html);
   };
 
+RM.Launcher.viewRecuit = function(into,data){
+
+  $.ajax({
+    type:'GET',
+    url : RM.restAPI+'/recuit/'+data.id,
+    contentType: 'application/json',
+    success : function(data){
+    //  callback(data);
+    console.log(data);
+    }
+  });
+
+  //$('#'+into).append(html);
+};
 
 //# sourceMappingURL=launchers.js.map

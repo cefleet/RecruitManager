@@ -1,6 +1,6 @@
 RM.Launcher = {
-  launch : function(into,callback,launcher){
-    this[launcher](into);//probably need data as well
+  launch : function(into,callback,launcher,data){
+    this[launcher](into,data);//probably need data as well
     if(typeof callback === 'function'){
       callback();
     }

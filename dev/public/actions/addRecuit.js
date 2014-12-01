@@ -10,14 +10,12 @@ RM.Actions.addRecuit = function(){
     }
     console.log(data);
 
-    //todo goto list
   };
 
   $.ajax({
     type:'POST',
     url : RM.restAPI+'/recuit/create',
-    data:data,
-    dataType: 'jsonp',
+    data:JSON.stringify(data),
     contentType: 'application/json',
     success : function(data){
       callback(data);

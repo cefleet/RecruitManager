@@ -12,14 +12,12 @@ RM.Actions.addRecuit = function(){
     }
     console.log(data);
 
-    //todo goto list
   };
 
   $.ajax({
     type:'POST',
     url : RM.restAPI+'/recuit/create',
-    data:data,
-    dataType: 'jsonp',
+    data:JSON.stringify(data),
     contentType: 'application/json',
     success : function(data){
       callback(data);
@@ -36,13 +34,30 @@ RM.Actions.content = function(into){
   RM.Launcher.launch(into,callback,'content');
 };
 
-RM.Actions.listRecuits = function(into){
-
-  RM.Launcher.launch(into,this._listRecuit,'listRecuit');
+RM.Actions.listRecuits = function(into,page){
+  page = page || 1;
+  RM.Launcher.launch(into,this._listRecuits,'listRecuit',{page:page});
 
 };
 
 RM.Actions._listRecuits = function(){
+
+  //pagination
+  $(document).undelegate('.pagination a','click');
+  $(document).delegate('.pagination a','click', function(){
+    $('#content').empty();
+    var page = $(this).attr('ui-data');
+    console.log(page);
+    RM.Actions.listRecuits('content',page);
+  });
+
+  $(document).undelegate('.recuits tr','click');
+
+  $(document).delegate('.recuits tr', 'click', function(){
+    console.log(this);
+    var id = $(this).attr('id');
+    RM.Actions.viewRecuit('content',id);
+  });
 
 };
 
@@ -75,5 +90,15 @@ RM.Actions._newRecuit = function(){
   });
 };
 
+RM.Actions.viewRecuit = function(into,id){
+  var data = {
+    id : id
+  }
+  RM.Launcher.launch(into,this._viewRecuit,'viewRecuit', data);
+};
+
+RM.Actions._viewRecuit = function(){
+
+};
 
 //# sourceMappingURL=actions.js.map
