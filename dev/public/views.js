@@ -204,11 +204,11 @@ this["RM"]["Views"]["new_recuit_form"] = Handlebars.template({"1":function(depth
   return buffer;
 },"5":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
-  stack1 = this.invokePartial(partials.button, '        ', 'button', depth0, undefined, helpers, partials, data);
+  stack1 = this.invokePartial(partials.button, '', 'button', depth0, undefined, helpers, partials, data);
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<div class='form-horizontal' role='form' id='createRecuitForm'>\n  <div class='form-group'>\n";
+  var stack1, buffer = "<div id='recuitForm'>\n<div class='form-horizontal' role='form' id='createRecuitForm'>\n  <div class='form-group'>\n";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 != null ? depth0.form : depth0)) != null ? stack1.first_name : stack1), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   buffer += "  </div>\n  <div class='form-group'>\n";
@@ -241,8 +241,48 @@ this["RM"]["Views"]["new_recuit_form"] = Handlebars.template({"1":function(depth
   buffer += "  </div>\n  <div class='form-group'>\n";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 != null ? depth0.form : depth0)) != null ? stack1.job_type : stack1), {"name":"each","hash":{},"fn":this.program(3, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  buffer += "  </div>\n  <div class='form-group'>\n    <div class=\"col-sm-6\">\n";
+  buffer += "  </div>\n  <div class='form-group'>\n";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 != null ? depth0.form : depth0)) != null ? stack1.ssn : stack1), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "  </div>\n  <div class='form-group'>\n";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 != null ? depth0.form : depth0)) != null ? stack1.dob : stack1), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "  </div>\n</div>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.button : depth0), {"name":"each","hash":{},"fn":this.program(5, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "    </div>\n  </div>\n\n</div>\n";
+  return buffer + "</div>\n";
+},"usePartial":true,"useData":true});
+
+
+
+this["RM"]["Views"]["server_msg"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return escapeExpression(((helper = (helper = helpers.type || (depth0 != null ? depth0.type : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"type","hash":{},"data":data}) : helper)));
+  },"3":function(depth0,helpers,partials,data) {
+  return "success";
+  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div id=\""
+    + escapeExpression(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"id","hash":{},"data":data}) : helper)))
+    + "\" class='alert alert-";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.type : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "'\nrole='alert' style='position:absolute;top:20px;left:20px;z-index:10000'>\n<button type='button' class='close' data-dismiss='alert'>\n  <span class='glyphicon glyphicon-remove'></span>\n</button>\n"
+    + escapeExpression(((helper = (helper = helpers.message || (depth0 != null ? depth0.message : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"message","hash":{},"data":data}) : helper)))
+    + "\n</div>\n";
+},"useData":true});
+
+
+
+this["RM"]["Views"]["view_recuit"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "<div class='form-group'>\n";
+  stack1 = this.invokePartial(partials.input, '  ', 'input', depth0, undefined, helpers, partials, data);
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "</div>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.field : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "<input type='hidden' name='id' id='id_input' value='"
+    + escapeExpression(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"id","hash":{},"data":data}) : helper)))
+    + "' />\n";
 },"usePartial":true,"useData":true});

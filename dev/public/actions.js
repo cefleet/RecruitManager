@@ -10,7 +10,18 @@ RM.Actions.addRecuit = function(){
     if(typeof data === 'string'){
       data = JSON.parse(data);
     }
-    console.log(data);
+    //TODO save msg
+    var name;
+    if(data.name){
+      name = data.name;
+    } else {
+      name = data.first_name+' '+data.last_name;
+    }
+    var msg = RM.Views.server_msg({
+      id : 'recuitSaved',
+      message : name+' was saved to the server'
+    });
+    $(document.body).append(msg);
 
   };
 
@@ -24,7 +35,6 @@ RM.Actions.addRecuit = function(){
     }
   });
 };
-//collect information
 
 RM.Actions.content = function(into){
   var callback = function(){
@@ -83,22 +93,61 @@ RM.Actions.newRecuit = function(into){
   RM.Launcher.launch(into,this._newRecuit,'newRecuit');
 };
 RM.Actions._newRecuit = function(){
-  $('#createRecuitForm .btn').on('click', function(){
+  $('#recuitForm .btn').on('click', function(){
     var action = $(this).attr('l-action');
 
     RM.Actions[action]();
   });
 };
 
+RM.Actions.saveRecuit = function(){
+  var data = {};
+  $('#viewRecuitForm :input').each(function(){
+    data[$(this).attr('name')] = $(this).val();
+  });
+
+  var callback = function(data){
+    if(typeof data === 'string'){
+      data = JSON.parse(data);
+    }
+
+    //TODO save msg
+    var name;
+    if(data.name){
+      name = data.name;
+    } else {
+      name = data.first_name+' '+data.last_name;
+    }
+    var msg = RM.Views.server_msg({
+      id : 'recuitSaved',
+      message : name+' was saved to the database.'
+    });
+  };
+
+  $.ajax({
+    type:'PUT',
+    url : RM.restAPI+'/recuit/update/'+data.id,
+    data:JSON.stringify(data),
+    contentType: 'application/json',
+    success : function(data){
+      callback(data);
+    }
+  });
+};
+
 RM.Actions.viewRecuit = function(into,id){
   var data = {
     id : id
-  }
+  };
+  $('#'+into).empty();
   RM.Launcher.launch(into,this._viewRecuit,'viewRecuit', data);
 };
 
 RM.Actions._viewRecuit = function(){
-
+  $('#recuitForm .btn').on('click', function(){
+    var action = $(this).attr('l-action');
+    RM.Actions[action]();
+  });
 };
 
 //# sourceMappingURL=actions.js.map

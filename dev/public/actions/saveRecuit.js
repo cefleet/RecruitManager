@@ -1,6 +1,6 @@
-RM.Actions.addRecuit = function(){
+RM.Actions.saveRecuit = function(){
   var data = {};
-  $('#createRecuitForm :input').each(function(){
+  $('#viewRecuitForm :input').each(function(){
     data[$(this).attr('name')] = $(this).val();
   });
 
@@ -8,6 +8,7 @@ RM.Actions.addRecuit = function(){
     if(typeof data === 'string'){
       data = JSON.parse(data);
     }
+
     //TODO save msg
     var name;
     if(data.name){
@@ -17,15 +18,13 @@ RM.Actions.addRecuit = function(){
     }
     var msg = RM.Views.server_msg({
       id : 'recuitSaved',
-      message : name+' was saved to the server'
+      message : name+' was saved to the database.'
     });
-    $(document.body).append(msg);
-
   };
 
   $.ajax({
-    type:'POST',
-    url : RM.restAPI+'/recuit/create',
+    type:'PUT',
+    url : RM.restAPI+'/recuit/update/'+data.id,
     data:JSON.stringify(data),
     contentType: 'application/json',
     success : function(data){

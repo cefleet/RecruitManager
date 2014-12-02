@@ -84,6 +84,22 @@ RM.Launcher.newRecuit = function(into){
         value : '',
         name : 'address_zip'
       }],
+      ssn : [{
+        title : 'Social Security',
+        id : 'ssn_input',
+        cols : '6',
+        placeholder : 'SSN',
+        value : '',
+        name : 'ssn'
+      }],
+      dob : [{
+        title : 'Date of Birth',
+        id : 'dob_input',
+        cols : '6',
+        placeholder : 'MM/DD/YYYY',
+        value : '',
+        name : 'dob'
+      }],
       years_exp : [{
         type : 'select',
         title : 'Years Experience',

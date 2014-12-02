@@ -1,9 +1,8 @@
 RM.Launcher.listRecuit = function(into,options){
-  console.log(options);
   var count,reqOptions,tp,pages;
   options = options || {};
   var page = options.page || 1;
-  var limit = options.limit || 3;
+  var limit = options.limit || 12;
 
   var callback = function(data){
     pages = [];
